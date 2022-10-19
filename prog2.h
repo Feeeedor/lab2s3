@@ -24,7 +24,12 @@ public:
             a = 1;
         }
     }
-
+ double GetA(){
+return a;
+ }
+ double GetB(){
+return b;
+ }
     void SetA(double newA)
     {
         if (newA > 0)
@@ -45,7 +50,8 @@ public:
     {
         return fabs(b + 2 * a * cos(angle));
     }
-    void ptint()
+
+    void print()
     {
         std::cout << "a = " << a << "\nb = " << b << "\n";
     }
@@ -71,7 +77,14 @@ public:
     {
         return (2 * a * a + b * b) * M_PI;
     }
-
+void Radius(double &r1, double &r2, double &r3){
+r1=(b+2*a)*(b+2*a)/(b+4*a);
+r2=(b-2*a)*(b-2*a)/fabs(b-2*a);
+if(Type_of_Snail()<=2)
+r3=0.5*sqrt(4*a*a-b*b);
+else
+r3=0;
+}
     char *decart()
     {
         double n1 = a * 2;
