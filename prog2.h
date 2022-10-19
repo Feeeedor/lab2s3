@@ -41,6 +41,6 @@ bool snail_d_Type_of_Snail(Snail &z);
 bool snail_d_Square_snail(Snail &z);
 bool snail_d_Radius(Snail &z);
 bool snail_d_decart(Snail &z);
-
+int vvodd(double &a);
   int dialog(Snail &z);
   

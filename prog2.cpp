@@ -6,7 +6,7 @@ bool snail_d_SetA(Snail &z)
 {
     std::cout << "Введите значение а : --> ";
     double a;
-    std::cin >> a;
+    vvodd(a);
 
     z.SetA(a);
     return 1;
@@ -15,7 +15,7 @@ bool snail_d_SetB(Snail &z)
 {
     std::cout << "Введите значение b : --> ";
     double b;
-    std::cin >> b;
+    vvodd(b);
 
     z.SetB(b);
     return 1;
@@ -39,7 +39,7 @@ bool snail_d_distance(Snail &z)
 {
     std::cout << "Введите искомый угол(в радианах): --> ";
     double angle;
-    std::cin >> angle;
+    vvodd(angle);
     double r;
 
     r = z.distance(angle);
@@ -221,3 +221,17 @@ char *Snail::decart()
 
     return dec;
 }
+
+int vvodd(double &a)
+    {
+        while (1)
+        {
+            std::cin >> a;
+            if (std::cin.good() == 1)
+                break;
+            std::cout << "You are wrong. Repeat please" << std::endl;
+            std::cin.clear();
+            std::cin.ignore();
+        }
+        return 1;
+    }
