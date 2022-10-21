@@ -1,41 +1,36 @@
-
-
 #include "prog2.h"
 
-bool snail_d_SetA(Snail &z)
+void snail_d_SetA(Snail &z)
 {
     std::cout << "Введите значение а : --> ";
     double a;
     vvodd(a);
-
     z.SetA(a);
-    return 1;
 }
-bool snail_d_SetB(Snail &z)
+
+void snail_d_SetB(Snail &z)
 {
     std::cout << "Введите значение b : --> ";
     double b;
     vvodd(b);
-
     z.SetB(b);
-    return 1;
 }
-bool snail_d_GetA(Snail &z)
+
+void snail_d_GetA(Snail &z)
 {
     double a;
     a = z.GetA();
     std::cout << "a = " << a << std::endl;
-    return 1;
 }
-bool snail_d_GetB(Snail &z)
+
+void snail_d_GetB(Snail &z)
 {
     double b;
     b = z.GetB();
     std::cout << "b = " << b << std::endl;
-    return 1;
 }
 
-bool snail_d_distance(Snail &z)
+void snail_d_distance(Snail &z)
 {
     std::cout << "Введите искомый угол(в радианах): --> ";
     double angle;
@@ -44,16 +39,16 @@ bool snail_d_distance(Snail &z)
 
     r = z.distance(angle);
     std::cout << "Расстояние до центра равно " << r << std::endl;
-    return 1;
+
 }
 
-bool snail_d_print(Snail &z)
+void snail_d_print(Snail &z)
 {
     std::cout << "Значения a и b:\n";
     z.print();
-    return 1;
+
 }
-bool snail_d_Type_of_Snail(Snail &z)
+void snail_d_Type_of_Snail(Snail &z)
 {
     int i = z.Type_of_Snail();
     std::cout << "Тип формы улитки Паскаля - ";
@@ -65,63 +60,64 @@ bool snail_d_Type_of_Snail(Snail &z)
         std::cout << "с изгибом\n";
     else if (i == 4)
         std::cout << "овальная\n";
-    return 1;
 }
-bool snail_d_Square_snail(Snail &z)
+void snail_d_Square_snail(Snail &z)
 {
-    std::cout << "Площадь улитки Паскаля " << z.Square_snail()<<endl;
-    return 1;
+    std::cout << "Площадь улитки Паскаля " << z.Square_snail() << std::endl;
+
 }
-bool snail_d_Radius(Snail &z)
+void snail_d_Radius(Snail &z)
 {
     double r1, r2, r3;
     z.Radius(r1, r2, r3);
     std::cout << "Радиус кривизны в крайней правой точке равен " << r1 << std::endl;
     std::cout << "Радиус кривизны в крайней левой точке равен " << r2 << std::endl;
     std::cout << "Радиус кривизны в точке (0;0) равен " << r3 << std::endl;
-    return 1;
+    
 }
-bool snail_d_decart(Snail &z)
+void snail_d_decart(Snail &z)
 {
     std::cout << "Улитка Паскаля в декартовой системе координат:\n";
-    std::cout<<z.decart()<<std::endl;
-    return 1;
+    std::cout << z.decart() << std::endl;
+
 }
 int dialog(Snail &z)
 {
- std::string words[] = { "0.Выход", "1.SetA", "2.SetB", "3.GetA",
- "4.GetB", "5.Расстояние_до_центра","6.Вывод",
-  "7.Тип_улитки", "8.Площадь_улитки", "9.Радиус_кривизны","10.В_декартовыой_системе"};
+    std::cout << std::endl;
+    std::string words[] = {"0.Выход", "1.SetA", "2.SetB", "3.GetA",
+                           "4.GetB", "5.Расстояние_до_центра", "6.Вывод",
+                           "7.Тип_улитки", "8.Площадь_улитки", "9.Радиус_кривизны", "10.В_декартовыой_системе"};
     int m;
-int N=11;
-do{
-    for (int i = 0; i < N; i++)
-        std::cout << words[i] << std::endl;
-    printf("выбор: --> ");
-    std::cin >> m;
-    
-    if(m==1)
-    snail_d_SetA(z);
-    else if(m==2)
-    snail_d_SetB(z);
-    else if(m==3)
-    snail_d_GetA(z);
-    else if(m==4)
- snail_d_GetB(z);
-    else if(m==5)
-    snail_d_distance(z);
-    else if(m==6)
-    snail_d_print(z);
-    else if(m==7)
-    snail_d_Type_of_Snail(z);
-    else if(m==8)
-    snail_d_Square_snail(z);
-    else if(m==9)
-    snail_d_Radius(z);
-    else if(m==10)
-    snail_d_decart(z);
-}while(m!=0);
-return 1;
+    int N = 11;
+    do
+    {
+        for (int i = 0; i < N; i++)
+            std::cout << words[i] << std::endl;
+        printf("выбор: --> ");
+        vvodm(m);
+
+        if (m == 1)
+            snail_d_SetA(z);
+        else if (m == 2)
+            snail_d_SetB(z);
+        else if (m == 3)
+            snail_d_GetA(z);
+        else if (m == 4)
+            snail_d_GetB(z);
+        else if (m == 5)
+            snail_d_distance(z);
+        else if (m == 6)
+            snail_d_print(z);
+        else if (m == 7)
+            snail_d_Type_of_Snail(z);
+        else if (m == 8)
+            snail_d_Square_snail(z);
+        else if (m == 9)
+            snail_d_Radius(z);
+        else if (m == 10)
+            snail_d_decart(z);
+    } while (m != 0);
+    return 1;
 }
 Snail::Snail(double newA, double newB)
 {
@@ -140,14 +136,17 @@ Snail::Snail(double newA, double newB)
         a = 1;
     }
 }
+
 double Snail::GetA()
 {
     return a;
 }
+
 double Snail::GetB()
 {
     return b;
 }
+
 void Snail::SetA(double newA)
 {
     if (newA > 0)
@@ -155,6 +154,7 @@ void Snail::SetA(double newA)
     else
         std::cout << "a должна быть больше 0\n";
 }
+
 void Snail::SetB(double newB)
 {
     if (newB > 0)
@@ -171,6 +171,7 @@ void Snail::print()
 {
     std::cout << "a = " << a << "\nb = " << b << "\n";
 }
+
 int Snail::Type_of_Snail()
 {
     // std::cout<<"Тип улитки Паскаля - ";
@@ -200,6 +201,7 @@ void Snail::Radius(double &r1, double &r2, double &r3)
     else
         r3 = 0;
 }
+
 char *Snail::decart()
 {
     double n1 = a * 2;
@@ -223,15 +225,28 @@ char *Snail::decart()
 }
 
 int vvodd(double &a)
+{
+    while (1)
     {
-        while (1)
-        {
-            std::cin >> a;
-            if (std::cin.good() == 1)
-                break;
-            std::cout << "You are wrong. Repeat please" << std::endl;
-            std::cin.clear();
-            std::cin.ignore();
-        }
-        return 1;
+        std::cin >> a;
+        if (std::cin.good() == 1)
+            break;
+        std::cout << "You are wrong. Repeat please" << std::endl;
+        std::cin.clear();
+        std::cin.ignore();
     }
+    return 1;
+}
+int vvodm(int &a)
+{
+    while (1)
+    {
+        std::cin >> a;
+        if (std::cin.good() == 1 && a >= 0 && a <= 10)
+            break;
+        std::cout << "You are wrong. Repeat please" << std::endl;
+        std::cin.clear();
+        std::cin.ignore();
+    }
+    return 1;
+}
