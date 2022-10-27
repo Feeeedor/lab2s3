@@ -4,16 +4,24 @@ void snail_d_SetA(Snail &z)
 {
     std::cout << "Введите значение а : --> ";
     double a;
+    try{
     vvodd(a);
-    z.SetA(a);
+    z.SetA(a);}
+    catch (std::underflow_error error){
+        std::cout<<"Underflow_error "<<error.what()<<std::endl;
+    }
 }
 
 void snail_d_SetB(Snail &z)
 {
     std::cout << "Введите значение b : --> ";
     double b;
+    try{
     vvodd(b);
-    z.SetB(b);
+    z.SetB(b);}
+    catch (std::underflow_error error){
+        std::cout<<"Underflow_error "<<error.what()<<std::endl;
+    }
 }
 
 void snail_d_GetA(Snail &z)
@@ -42,12 +50,7 @@ void snail_d_distance(Snail &z)
 
 }
 
-void snail_d_print(Snail &z)
-{
-    std::cout << "Значения a и b:\n";
-    z.print();
 
-}
 void snail_d_Type_of_Snail(Snail &z)
 {
     int i = z.Type_of_Snail();
@@ -85,56 +88,58 @@ int dialog(Snail &z)
 {
     std::cout << std::endl;
     std::string words[] = {"0.Выход", "1.SetA", "2.SetB", "3.GetA",
-                           "4.GetB", "5.Расстояние_до_центра", "6.Вывод",
-                           "7.Тип_улитки", "8.Площадь_улитки", "9.Радиус_кривизны", "10.В_декартовыой_системе"};
+                           "4.GetB", "5.Расстояние_до_центра",
+                           "6.Тип_улитки", "7.Площадь_улитки", "8.Радиус_кривизны", "9.В_декартовыой_системе"};
     int m;
-    int N = 11;
+    int N = 10;
     do
     {
         for (int i = 0; i < N; i++)
             std::cout << words[i] << std::endl;
         printf("выбор: --> ");
-        vvodm(m);
-
-        if (m == 1)
+       vvodm(m);
+        switch (m)
+        {
+        case 1:
             snail_d_SetA(z);
-        else if (m == 2)
+            break;
+        case 2:
             snail_d_SetB(z);
-        else if (m == 3)
+            break;
+        case 3:
             snail_d_GetA(z);
-        else if (m == 4)
+            break;
+        case 4:
             snail_d_GetB(z);
-        else if (m == 5)
+            break;
+        case 5:
             snail_d_distance(z);
-        else if (m == 6)
-            snail_d_print(z);
-        else if (m == 7)
+            break;
+        case 6:
             snail_d_Type_of_Snail(z);
-        else if (m == 8)
+            break;
+        case 7:
             snail_d_Square_snail(z);
-        else if (m == 9)
+            break;
+        case 8:
             snail_d_Radius(z);
-        else if (m == 10)
+            break;
+        case 9:
             snail_d_decart(z);
-    } while (m != 0);
+            break;
+            case 0:
+            return 1;
+            default:
+            std::cout<<"Должно быть введено значение от 0 до 9"<<std::endl;
+            break;
+        }
+    } while (1);
     return 1;
 }
-Snail::Snail(double newA, double newB)
+Snail::Snail()
 {
-    if (newA > 0)
-        a = newA;
-    else
-    {
-        std::cout << "а должна быть больше нуля, а установлена на 1\n";
-        a = 1;
-    }
-    if (newB > 0)
-        b = newB;
-    else
-    {
-        std::cout << "b должна быть больше нуля, b установлена на 1\n";
-        a = 1;
-    }
+    a=1;
+    b=1;
 }
 
 double Snail::GetA()
@@ -149,28 +154,24 @@ double Snail::GetB()
 
 void Snail::SetA(double newA)
 {
-    if (newA > 0)
+    if (newA <= 0)
+    throw std::underflow_error("a должна быть больше 0");
         a = newA;
-    else
-        std::cout << "a должна быть больше 0\n";
 }
 
 void Snail::SetB(double newB)
 {
-    if (newB > 0)
+    if (newB <= 0)
+    throw std::underflow_error("b должна быть больше 0");
         b = newB;
-    else
-        std::cout << "b должна быть больше 0\n";
+    
 }
 double Snail::distance(double angle)
 {
     return fabs(b + 2 * a * cos(angle));
 }
 
-void Snail::print()
-{
-    std::cout << "a = " << a << "\nb = " << b << "\n";
-}
+
 
 int Snail::Type_of_Snail()
 {
@@ -195,13 +196,25 @@ double Snail::Square_snail()
 void Snail::Radius(double &r1, double &r2, double &r3)
 {
     r1 = (b + 2 * a) * (b + 2 * a) / (b + 4 * a);
-    r2 = (b - 2 * a) * (b - 2 * a) / fabs(b - 2 * a);
+    r2 = (b - 2 * a) * (b - 2 * a) / fabs(b - 4 * a);
     if (Type_of_Snail() <= 2)
         r3 = 0.5 * sqrt(4 * a * a - b * b);
     else
         r3 = 0;
 }
-
+int vvodm(int &a)
+{
+    while (1)
+    {
+        std::cin >> a;
+        if (std::cin.good() == 1 && a >= 0 && a <= 9)
+            break;
+        std::cout << "You are wrong. Repeat please" << std::endl;
+        std::cin.clear();
+        std::cin.ignore();
+    }
+    return 1;
+}
 char *Snail::decart()
 {
     double n1 = a * 2;
@@ -231,22 +244,13 @@ int vvodd(double &a)
         std::cin >> a;
         if (std::cin.good() == 1)
             break;
+            
+            std::cin.clear();
+          
+        std::cin.ignore(1024,'\n');
         std::cout << "You are wrong. Repeat please" << std::endl;
-        std::cin.clear();
-        std::cin.ignore();
+        
     }
     return 1;
 }
-int vvodm(int &a)
-{
-    while (1)
-    {
-        std::cin >> a;
-        if (std::cin.good() == 1 && a >= 0 && a <= 10)
-            break;
-        std::cout << "You are wrong. Repeat please" << std::endl;
-        std::cin.clear();
-        std::cin.ignore();
-    }
-    return 1;
-}
+

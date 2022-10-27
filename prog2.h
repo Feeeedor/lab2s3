@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 #include <math.h>
+#include <stdexcept>
 
 class Snail
 {
@@ -9,7 +10,7 @@ private:
     double a;
     double b;
 public:
-    Snail(double newA, double newB);
+    Snail();
 
     double GetA();
     double GetB();
@@ -19,7 +20,7 @@ public:
 
     double distance(double angle);
 
-    void print();
+ 
     int Type_of_Snail();
 
     double Square_snail();
@@ -34,7 +35,7 @@ void snail_d_SetB(Snail &z);
 void snail_d_GetA(Snail &z);
 void snail_d_GetB(Snail &z);
 void snail_d_distance(Snail &z);
-void snail_d_print(Snail &z);
+
 void snail_d_Type_of_Snail(Snail &z);
 void snail_d_Square_snail(Snail &z);
 void snail_d_Radius(Snail &z);

@@ -1,13 +1,12 @@
 
 #include "prog2.h"
+#include "prog2.cpp"
+int main()
+{
 
-int main(){
-    
-    
-Snail z(1,1);
+    Snail z;
 
-dialog(z);
-
+    dialog(z);
 
     return 0;
 }
