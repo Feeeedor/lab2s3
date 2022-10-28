@@ -12,33 +12,33 @@ private:
 public:
     Snail();
 
-    double GetA();
-    double GetB();
-    void SetA(double newA);
+    double getA();
+    double getB();
+    void setA(double newA);
 
-    void SetB(double newB);
+    void setB(double newB);
 
     double distance(double angle);
 
  
-    int Type_of_Snail();
+    int type_of_Snail();
 
-    double Square_snail();
-    void Radius(double &r1, double &r2, double &r3);
+    double square_snail();
+    void radius(double &r1, double &r2, double &r3);
     char *decart();
 };
 
 int dialog();
 
-void snail_d_SetA(Snail &z);
-void snail_d_SetB(Snail &z);
-void snail_d_GetA(Snail &z);
-void snail_d_GetB(Snail &z);
+void snail_d_setA(Snail &z);
+void snail_d_setB(Snail &z);
+void snail_d_getA(Snail &z);
+void snail_d_getB(Snail &z);
 void snail_d_distance(Snail &z);
 
-void snail_d_Type_of_Snail(Snail &z);
-void snail_d_Square_snail(Snail &z);
-void snail_d_Radius(Snail &z);
+void snail_d_type_of_Snail(Snail &z);
+void snail_d_square_snail(Snail &z);
+void snail_d_radius(Snail &z);
 void snail_d_decart(Snail &z);
 int vvodd(double &a);
 int vvodm(int &a);

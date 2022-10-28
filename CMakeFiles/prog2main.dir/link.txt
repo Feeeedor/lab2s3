@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/prog2main.dir/prog2main.cpp.o  -o prog2main 
