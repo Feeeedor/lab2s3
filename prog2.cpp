@@ -4,22 +4,28 @@ void snail_d_setA(Snail &z)
 {
     std::cout << "Введите значение а : --> ";
     double a;
-    try{
-    vvodd(a);
-    z.setA(a);}
-    catch (std::underflow_error &err){
-        std::cout<<"Underflow_error "<<err.what()<<std::endl;
+    try
+    {
+        vvodd(a);
+        z.setA(a);
+    }
+    catch (std::underflow_error &err)
+    {
+        std::cout << "Underflow_error " << err.what() << std::endl;
     }
 }
 void snail_d_setB(Snail &z)
 {
     std::cout << "Введите значение b : --> ";
     double b;
-    try{
-    vvodd(b);
-    z.setB(b);}
-    catch (std::underflow_error &err){
-        std::cout<<"Underflow_error "<<err.what()<<std::endl;
+    try
+    {
+        vvodd(b);
+        z.setB(b);
+    }
+    catch (std::underflow_error &err)
+    {
+        std::cout << "Underflow_error " << err.what() << std::endl;
     }
 }
 void snail_d_getA(Snail &z)
@@ -43,13 +49,13 @@ void snail_d_distance(Snail &z)
 
     r = z.distance(angle);
     std::cout << "Расстояние до центра равно " << r << std::endl;
-
 }
 void snail_d_type_of_Snail(Snail &z)
 {
     int i = z.type_of_Snail();
     std::cout << "Тип формы улитки Паскаля - ";
-    switch (i){
+    switch (i)
+    {
     case 1:
         std::cout << "с петлей\n";
         break;
@@ -61,12 +67,12 @@ void snail_d_type_of_Snail(Snail &z)
         break;
     case 4:
         std::cout << "овальная\n";
-        break;}
+        break;
+    }
 }
 void snail_d_square_snail(Snail &z)
 {
     std::cout << "Площадь улитки Паскаля " << z.square_snail() << std::endl;
-
 }
 void snail_d_radius(Snail &z)
 {
@@ -75,13 +81,15 @@ void snail_d_radius(Snail &z)
     std::cout << "Радиус кривизны в крайней правой точке равен " << r1 << std::endl;
     std::cout << "Радиус кривизны в крайней левой точке равен " << r2 << std::endl;
     std::cout << "Радиус кривизны в точке (0;0) равен " << r3 << std::endl;
-    
 }
 void snail_d_decart(Snail &z)
 {
     std::cout << "Улитка Паскаля в декартовой системе координат:\n";
-    std::cout << z.decart() << std::endl;
-
+    char *f;
+    z.decart(f);
+    std::cout << f << std::endl;
+    
+    delete []f;
 }
 
 int dialog(Snail &z)
@@ -97,7 +105,7 @@ int dialog(Snail &z)
         for (int i = 0; i < N; i++)
             std::cout << words[i] << std::endl;
         printf("выбор: --> ");
-       vvodm(m);
+        vvodm(m);
         switch (m)
         {
         case 1:
@@ -127,10 +135,10 @@ int dialog(Snail &z)
         case 9:
             snail_d_decart(z);
             break;
-            case 0:
+        case 0:
             return 1;
-            default:
-            std::cout<<"Должно быть введено значение от 0 до 9"<<std::endl;
+        default:
+            std::cout << "Должно быть введено значение от 0 до 9" << std::endl;
             break;
         }
     } while (1);
@@ -139,8 +147,8 @@ int dialog(Snail &z)
 
 Snail::Snail()
 {
-    a=1;
-    b=1;
+    a = 1;
+    b = 1;
 }
 double Snail::getA()
 {
@@ -153,15 +161,14 @@ double Snail::getB()
 void Snail::setA(double newA)
 {
     if (newA <= 0)
-    throw std::underflow_error("a должна быть больше 0");
-        a = newA;
+        throw std::underflow_error("a должна быть больше 0");
+    a = newA;
 }
 void Snail::setB(double newB)
 {
     if (newB <= 0)
-    throw std::underflow_error("b должна быть больше 0");
-        b = newB;
-    
+        throw std::underflow_error("b должна быть больше 0");
+    b = newB;
 }
 double Snail::distance(double angle)
 {
@@ -196,26 +203,28 @@ void Snail::radius(double &r1, double &r2, double &r3)
     else
         r3 = 0;
 }
-char *Snail::decart()
+void Snail::decart(char *&f)
 {
     double n1 = a * 2;
     double n2 = b * b;
 
     char num1[10];
-    snprintf(num1, sizeof(num1), "%lf", n1);
+    snprintf(num1, sizeof(num1), "%.2lf", n1);
+    
     char num2[10];
-    snprintf(num2, sizeof(num2), "%lf", n2);
+     
+    snprintf(num2, sizeof(num2), "%.2lf", n2);
     char s1[] = {"(x^2+y^2-"};
     char s2[] = {"*x)^2-"};
     char s3[] = {"(x^2+y^2)=0"};
-    char *dec = new char[strlen(s1) + strlen(num1) + strlen(s2) + strlen(num2) + strlen(s3)];
-    strcat(dec, s1);
-    strcat(dec, num1);
-    strcat(dec, s2);
-    strcat(dec, num2);
-    strcat(dec, s3);
-
-    return dec;
+  
+    f = new char[strlen(s1) + strlen(num1) + strlen(s2) + strlen(num2) + strlen(s3)+1]();
+    strcat(f, s1);
+    strcat(f, num1);
+    strcat(f, s2);
+    strcat(f, num2);
+ strcat(f, s3);
+    
 }
 
 int vvodm(int &a)
@@ -238,13 +247,11 @@ int vvodd(double &a)
         std::cin >> a;
         if (std::cin.good() == 1)
             break;
-            
+
         std::cin.clear();
-          
-        std::cin.ignore(1024,'\n');
+
+        std::cin.ignore(1024, '\n');
         std::cout << "You are wrong. Repeat please" << std::endl;
-        
     }
     return 1;
 }
-

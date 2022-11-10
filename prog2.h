@@ -11,21 +11,18 @@ private:
     double b;
 public:
     Snail();
-
+    /*~Snail (){
+        delete[]
+    }*/
     double getA();
     double getB();
     void setA(double newA);
-
     void setB(double newB);
-
     double distance(double angle);
-
- 
     int type_of_Snail();
-
     double square_snail();
     void radius(double &r1, double &r2, double &r3);
-    char *decart();
+    void decart(char *&f);
 };
 
 int dialog();
